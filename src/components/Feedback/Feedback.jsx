@@ -16,6 +16,18 @@ const Feedback = () => {
     }));
   };
 
+  const countTotalFeedback = () => {
+    const { good, neutral, bad } = feedback;
+    return good + neutral + bad;
+  };
+
+  const countPositiveFeedbackPercentage = () => {
+    const { good } = feedback;
+    const total = countTotalFeedback();
+    if (total === 0) return 0;
+    return Math.round((good / total) * 100);
+  };
+
   return (
     <div className={styles.feedbackWindow}>
       <h1 className={styles.title}>Please leave fedback</h1>
@@ -42,6 +54,10 @@ const Feedback = () => {
         <p className={styles.feedback}>Good: {feedback.good}</p>
         <p className={styles.feedback}>Neutral: {feedback.neutral}</p>
         <p className={styles.feedback}>Bad: {feedback.bad}</p>
+        <p className={styles.feedback}>Total: {countTotalFeedback()}</p>
+        <p className={styles.feedback}>
+          Positive feedback: {countPositiveFeedbackPercentage()}%
+        </p>
       </div>
     </div>
   );
