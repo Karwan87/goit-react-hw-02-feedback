@@ -3,6 +3,7 @@ import styles from './var.module.css';
 import Feedback from './Feedback/Feedback';
 import Statistics from './Statistics/Statistics';
 import Section from './Section/Section';
+import Notification from './Notification/Notification';
 
 export const App = () => {
   const [feedback, setFeedback] = useState({
@@ -24,7 +25,11 @@ export const App = () => {
         <Section title="Please leave feedback" />
         <Feedback onLeaveFeedback={handleFeedback} />
         <Section title="Statistics" />
-        <Statistics feedback={feedback} />
+        {Object.values(feedback).reduce((a, b) => a + b, 0) > 0 ? (
+          <Statistics feedback={feedback} />
+        ) : (
+          <Notification message="There is no feedback" />
+        )}
       </div>
     </div>
   );
