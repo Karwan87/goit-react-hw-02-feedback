@@ -1,0 +1,9 @@
+.statisticsContainer {
+  justify-content: center;
+  align-items: center;
+}
+.statistics {
+  display: flex;
+  justify-content: center;
+  font-size: 36px;
+}
